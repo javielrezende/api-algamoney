@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -45,7 +46,8 @@ public class CategoriaResource {
 	// Quando algo é criado, deve-se entregar um location para o header de resposta para retornar os dados inseridos
 	// Para melhorar a entrega do dado de insercao da API, pode-se retornar tambem o dado salvo, sem ser
 	// pelo location, mas sim como json pelo body, para isso coloca-se como retorno do metodo (ResponseEntity) e tira-se o VOID
-	public ResponseEntity<Categoria> criar(@RequestBody Categoria categoria, HttpServletResponse response){
+	// Validacao de notNull com o @Valid
+	public ResponseEntity<Categoria> criar(@Valid @RequestBody Categoria categoria, HttpServletResponse response){
 		// Agora colocamos o resultado da insercao no bd para um objeto Categoria
 		Categoria categoriaSalva = categoriaRepository.save(categoria);
 		// Utilizase a classe (ServletUriComponentsBuilder) para utilizar o metodo (fromCurrentRequestUri)
