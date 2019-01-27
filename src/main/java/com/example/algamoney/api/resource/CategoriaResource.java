@@ -41,7 +41,10 @@ public class CategoriaResource {
 	//Quando criar o dado na tabela, retornará o status 201, correto para insercoes no bd
 	//@ResponseStatus(HttpStatus.CREATED)
 	
-	// Este RequestBody serve para receber o json da nova insercao e ja transformar em objeto automaticamente
+	//Para iniciar a programacao deste metodo colocamos o objeto interface com o save. Apos isso, colocamos a anotação
+	// @RequestBody e a classe e objeto que quermos persistir no banco (Categoria categoria)..
+	// Este RequestBody serve para receber o json da nova insercao e ja transformar em objeto automaticamente para 
+	//futura apresentação
 	// O segundo argumento (HttpServletResponse) é utilizado para adequar este metodo conforme a solicitação do padrao REST
 	// Quando algo é criado, deve-se entregar um location para o header de resposta para retornar os dados inseridos
 	// Para melhorar a entrega do dado de insercao da API, pode-se retornar tambem o dado salvo, sem ser
@@ -58,7 +61,7 @@ public class CategoriaResource {
 		// Esta uri é adicionada ao header no location
 		response.setHeader("Location", uri.toASCIIString());
 		//Aqui ele retorna que foi criado e pode-se tirar o status da segunda anotação para o método,
-		// que foi comentado em baixa do POSTMAPPING
+		// que foi comentado em baixa do POSTMAPPING, pois o metodo created ja retorna o status correto
 		return ResponseEntity.created(uri).body(categoriaSalva);
 	}
 	
