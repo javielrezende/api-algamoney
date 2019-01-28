@@ -17,7 +17,6 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
@@ -74,10 +73,17 @@ public class AlgamoneyExceptionHandler extends ResponseEntityExceptionHandler {
 		return handleExceptionInternal(ex, erros, headers, HttpStatus.BAD_REQUEST, request);
 	}
 	
+	/**
+	 * Se aplica quando o que se espera for nulo u nao existir
+	 * 
+	 * A anotacao @ResponseStatus(HttpStatus.NOT_FOUND) serve apenas para quando o retorno for void...
+	 * Quando o retorno for responde como responsta para o dev e client utilizara pelo HttpStatus
+	 * @param ex
+	 * @param request
+	 * @return
+	 */
 	@ExceptionHandler({EmptyResultDataAccessException.class})
-	// A anotacao abaixo serve apenas para quando o retorno for void...
-	//Quando o retorno for responde como responsta para o dev e client utilizara pelo HttpStatus
-	//@ResponseStatus(HttpStatus.NOT_FOUND)
+	
 	public ResponseEntity<Object> handleEmptyResultDataAccessException(EmptyResultDataAccessException ex, WebRequest request) {
 		
 		String mensagemUsuario = messageSource.getMessage("recurso.nao-encontrado", null, LocaleContextHolder.getLocale());
