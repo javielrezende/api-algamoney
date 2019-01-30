@@ -2,7 +2,6 @@ package com.example.algamoney.api.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,7 +24,7 @@ public class Lancamento {
 	private String descricao;
 	
 	@Column(name = "data_vencimento")
-	private LocalTime dataVencimento;
+	private LocalDate dataVencimento;
 	
 	@Column(name = "data_pagamento")
 	private LocalDate dataPagamento;
@@ -61,11 +60,11 @@ public class Lancamento {
 		this.descricao = descricao;
 	}
 
-	public LocalTime getDataVencimento() {
+	public LocalDate getDataVencimento() {
 		return dataVencimento;
 	}
 
-	public void setDataVencimento(LocalTime dataVencimento) {
+	public void setDataVencimento(LocalDate dataVencimento) {
 		this.dataVencimento = dataVencimento;
 	}
 
