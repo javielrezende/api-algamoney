@@ -42,7 +42,13 @@ public class PessoaService {
 		pessoaRepository.save(pessoaSalva);
 	}
 	
-	private Pessoa buscarPessoaPeloCodigo(Long codigo) {
+	/**
+	 * Passado este metodo para public porque eh utilizado para buscar pessoas pelo codigo
+	 * Esta sendo utilizado no LancamentoService
+	 * @param codigo
+	 * @return
+	 */
+	public Pessoa buscarPessoaPeloCodigo(Long codigo) {
 		Pessoa pessoaSalva = pessoaRepository.findOne(codigo);
 
 		if (pessoaSalva == null) {
